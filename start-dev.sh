@@ -1,0 +1,1 @@
+dotnet run --project AwesomeShop.Services.Orders.API/AwesomeShop.Services.Orders.API.csproj

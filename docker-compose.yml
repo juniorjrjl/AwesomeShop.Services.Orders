@@ -1,0 +1,32 @@
+services:
+  orderapi:
+    build:
+      context: .
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Mongo__ConnectionStrings: mongodb://order-service:order-service@orderdb:27017
+      Mongo__Database: order-service
+      Urls: http://+:5001
+    command: bash start-dev.sh
+    ports:
+      - "5001:5001"
+    networks:
+      - awesome-shop-services-net
+    volumes:
+      - .:/AwesomeShop.Services.Orders
+    depends_on:
+      - orderdb
+  orderdb:
+    image: mongodb/mongodb-community-server:7.0.5-ubi8
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: order-service
+      MONGO_INITDB_ROOT_PASSWORD: order-service
+    ports:
+      - "27019:27017"
+    networks:
+      - awesome-shop-services-net
+
+networks:
+  awesome-shop-services-net:
+    name: awesome-shop-services-net
+    external: true
