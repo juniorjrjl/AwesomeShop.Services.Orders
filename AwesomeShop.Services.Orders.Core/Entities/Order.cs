@@ -15,6 +15,7 @@ public class Order : AggregateRoot
         PaymentAddress = paymentAddress;
         PaymentInfo = paymentInfo;
         Items = items;
+        Status = OrderStatus.STARTED;
         CreatedAt = DateTime.UtcNow;
         AddEvent(new OrderCreated(Id, Total, paymentInfo, Customer.FullName, Customer.Email));
     }

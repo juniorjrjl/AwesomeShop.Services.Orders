@@ -15,6 +15,8 @@ builder.Services.AddHandlers();
 builder.Services.AddMappers();
 builder.Services.AddMongo();
 builder.Services.AddRepositories();
+builder.Services.AddRabbitMq();
+builder.Services.AddHttpClient();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title= "AwesomeShop.Services.Orders.API", Version = "v1" }));

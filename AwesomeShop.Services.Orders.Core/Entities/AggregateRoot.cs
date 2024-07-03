@@ -12,7 +12,6 @@ public class AggregateRoot : IEntityBase
 
     protected void AddEvent(IDomainEvent @event){
         _events ??= [];
-        
         _events.Add(@event);
     }
 
