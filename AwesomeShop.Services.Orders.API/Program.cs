@@ -16,6 +16,7 @@ builder.Services.AddMappers();
 builder.Services.AddMongo();
 builder.Services.AddRepositories();
 builder.Services.AddRabbitMq();
+builder.Services.AddSubscribers();
 builder.Services.AddHttpClient();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

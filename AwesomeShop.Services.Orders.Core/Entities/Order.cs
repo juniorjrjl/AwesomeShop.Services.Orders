@@ -36,4 +36,8 @@ public class Order : AggregateRoot
     
     public OrderStatus Status { get; private set; }
 
+    public void SetAsCompleted() => Status = OrderStatus.COMPLETED;
+
+    public void SetAsRejected() => Status = OrderStatus.REJECTED;
+
 }

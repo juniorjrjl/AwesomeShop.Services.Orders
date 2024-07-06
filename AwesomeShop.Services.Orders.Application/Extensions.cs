@@ -1,5 +1,6 @@
 using AwesomeShop.Services.Orders.Application.Commands;
 using AwesomeShop.Services.Orders.Application.Mappers;
+using AwesomeShop.Services.Orders.Application.Subscribers;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +12,12 @@ public static class Extensions
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(AddOrder).Assembly));
 
+        return services;
+    }
+
+    public static IServiceCollection AddSubscribers(this IServiceCollection services)
+    {
+        services.AddHostedService<PaymentAcceptedSubscriber>();
         return services;
     }
 
