@@ -1,4 +1,5 @@
 using AwesomeShop.Services.Orders.Application.Commands;
+using AwesomeShop.Services.Orders.Application.Integrations;
 using AwesomeShop.Services.Orders.Application.Mappers;
 using AwesomeShop.Services.Orders.Application.Subscribers;
 using MediatR;
@@ -24,6 +25,12 @@ public static class Extensions
     public static IServiceCollection AddMappers(this IServiceCollection services)
     {
         services.AddSingleton<IOrderMapper, OrderMapper>();
+        return services;
+    }
+
+    public static IServiceCollection AddClients(this IServiceCollection services)
+    {
+        services.AddSingleton<ICustomerClient, CustomerClient>();
         return services;
     }
 

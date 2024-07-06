@@ -11,7 +11,7 @@ services:
       RabbitMQ__Password: QlHhmVNnNeGL_s3rx9uAZ4icwcVBKo9I
       RabbitMQ__Port: 5672
       RabbitMQ__VirtualHost: cnxoyvms
-      Consul_Host: http://localhost:8500
+      Consul__Host: http://servicediscovery:8500
       Urls: http://+:5001
     command: bash start-dev.sh
     ports:

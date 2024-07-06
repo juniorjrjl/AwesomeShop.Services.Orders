@@ -7,12 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddConsulConfig(builder.Configuration);
 builder.Services.AddControllers()
     .AddJsonOptions(opt =>{
         opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 builder.Services.AddHandlers();
 builder.Services.AddMappers();
+builder.Services.AddClients();
 builder.Services.AddMongo();
 builder.Services.AddRepositories();
 builder.Services.AddRabbitMq();
@@ -35,6 +37,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.UseConsul();
 
 app.MapControllers();
 
