@@ -1,11 +1,13 @@
 using System.Text;
 using AwesomeShop.Services.Orders.Core.Repositories;
+using AwesomeShop.Services.Orders.Infrastructure.CacheStorage;
 using AwesomeShop.Services.Orders.Infrastructure.MessageBus;
 using AwesomeShop.Services.Orders.Infrastructure.Persistence;
 using AwesomeShop.Services.Orders.Infrastructure.Repositories;
 using AwesomeShop.Services.Orders.Infrastructure.ServiceDiscovery;
 using Consul;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -154,6 +156,17 @@ public static class Extensions
         });
 
         return app;
+    }
+
+    public static IServiceCollection AddRedisCache(this IServiceCollection services)
+    {
+        services.AddStackExchangeRedisCache(opt =>
+        {
+            opt.InstanceName = "OrdersCache";
+            opt.Configuration = "dbcache:6379";
+        });
+        services.AddTransient<ICacheService, RedisCacheService>();
+        return services;
     }
 
 }
